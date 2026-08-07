@@ -6,9 +6,9 @@
 (function () {
   const sectionByNode = {
     0: "hero", 1: "about", 2: "research", 3: "results",
-    4: "members", 5: "daily", 6: "access", 7: "others",
+    4: "members", 5: "environment", 6: "access", 7: "others",
   };
-  const topics = ["木津川研", "研究室紹介", "研究内容", "研究成果", "メンバー", "日常", "アクセス", "その他"];
+  const topics = ["木津川研", "研究室紹介", "研究内容", "研究成果", "メンバー", "環境", "アクセス", "その他"];
 
   let isPanelOpen = false;
   let time = 0;
