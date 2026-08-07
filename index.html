@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>脳回路情報学研究室 — 木津川研究室 | 立命館大学</title>
+  <meta name="description"
+    content="立命館大学 生命科学部 木津川研究室（脳回路情報学研究室）。数理モデルで脳回路を再現する計算論的アプローチ（Dry）と、マウスを用いた行動・生理実験（Wet）の両輪で、脳が情報を処理する原理を解き明かします。" />
+
+  <!-- OGP / Twitter Card -->
+  <link rel="canonical" href="https://kitsukawalabpc.github.io/labweb/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="脳回路情報学研究室 — 立命館大学 木津川研究室" />
+  <meta property="og:locale" content="ja_JP" />
+  <meta property="og:url" content="https://kitsukawalabpc.github.io/labweb/" />
+  <meta property="og:title" content="脳回路情報学研究室 — 木津川研究室 | 立命館大学" />
+  <meta property="og:description"
+    content="数理モデルで脳回路を再現する計算論的アプローチ（Dry）と、マウスを用いた行動・生理実験（Wet）。2つの手法を往復しながら、脳が情報を処理する原理を解き明かします。" />
+  <meta property="og:image" content="https://kitsukawalabpc.github.io/labweb/assets/images/ogp.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="脳回路情報学研究室 Brain Network Information Lab — 立命館大学 BKC" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="脳回路情報学研究室 — 木津川研究室 | 立命館大学" />
+  <meta name="twitter:description"
+    content="数理モデルで脳回路を再現する計算論的アプローチ（Dry）と、マウスを用いた行動・生理実験（Wet）。2つの手法を往復しながら、脳が情報を処理する原理を解き明かします。" />
+  <meta name="twitter:image" content="https://kitsukawalabpc.github.io/labweb/assets/images/ogp.png" />
+  <meta name="theme-color" content="#050a12" />
+
+  <link rel="icon" href="assets/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
+  <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+  <link rel="manifest" href="assets/images/site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;500;700&family=Noto+Sans+JP:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+
+<body>
+  <audio id="labAudio" loop>
+    <source src="assets/Neural_Space.mp3" type="audio/mpeg" />
+  </audio>
+
+  <!-- 3D neural network background -->
+  <div id="network-container"></div>
+
+  <!-- top bar -->
+  <header class="topbar">
+    <div class="brand" title="トップへ" style="gap: 12px">
+      <a href="https://www.ritsumei.ac.jp/" target="_blank" rel="noopener noreferrer"
+        title="立命館大学 公式サイト" style="display: flex; align-items: center">
+        <img class="brand__mark" src="assets/images/ritsumei_logo.png" alt="立命館大学"
+          style="height: 40px; width: 21px; object-fit: fill" />
+      </a>
+      <div class="brand__tx">
+        <span class="brand__jp" style="font-size: 25px">脳回路情報学研究室</span>
+        <span class="brand__en" style="font-size: 10px">Brain Network Information Lab</span>
+      </div>
+    </div>
+    <button id="audioBtn" class="audio-btn" aria-label="BGMの再生/停止">
+      <span class="audio-btn__ico">
+        <span class="eq"><span></span><span></span><span></span><span></span></span>
+      </span>
+      <span class="audio-btn__label">Sound Off</span>
+    </button>
+  </header>
+
+  <!-- nav dock -->
+  <nav class="dock">
+    <button class="dock__item" data-section="about"><span class="dock__num">01</span><span
+        class="dock__tick"></span><span class="dock__name">研究室紹介</span></button>
+    <button class="dock__item" data-section="research"><span class="dock__num">02</span><span
+        class="dock__tick"></span><span class="dock__name">研究内容</span></button>
+    <button class="dock__item" data-section="results"><span class="dock__num">03</span><span
+        class="dock__tick"></span><span class="dock__name">研究成果</span></button>
+    <button class="dock__item" data-section="members"><span class="dock__num">04</span><span
+        class="dock__tick"></span><span class="dock__name">メンバー</span></button>
+    <button class="dock__item" data-section="environment"><span class="dock__num">05</span><span
+        class="dock__tick"></span><span class="dock__name">環境</span></button>
+    <button class="dock__item" data-section="access"><span class="dock__num">06</span><span
+        class="dock__tick"></span><span class="dock__name">アクセス</span></button>
+    <button class="dock__item" data-section="others"><span class="dock__num">07</span><span
+        class="dock__tick"></span><span class="dock__name">その他</span></button>
+  </nav>
+
+  <!-- hero -->
+  <section id="section-hero">
+    <div class="hero">
+      <div class="hero__left">
+        <div class="hero__eyebrow">Ritsumeikan University · BKC</div>
+        <h1 class="hero__title">脳回路情報学研究室</h1>
+        <div class="hero__sub">Brain Network Information Lab</div>
+      </div>
+      <div class="hero__vrule"></div>
+      <div class="hero__right">
+        <div class="hero__prof"><b>木津川 尚史</b> 教授</div>
+        <p class="hero__desc">
+          脳は、どのように情報を処理しているのか。
+          数理モデルで脳回路を再現する計算論的アプローチと、マウスを用いた行動実験。
+          2つの手法を往復しながら、脳が情報を処理する原理を解き明かします。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- explore hint (anchored bottom-center, outside hero) -->
+  <div class="explore-hint" id="exploreHint"><span class="dot"></span>ノードに触れて／クリックして探索</div>
+
+  <!-- scrim + side panel -->
+  <div class="scrim"></div>
+  <aside class="panel" aria-live="polite">
+    <div class="panel__head">
+      <div class="panel__eyebrow"><span class="num">01</span><span class="en">About</span></div>
+      <button class="panel__close" aria-label="閉じる">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+          <path d="M5 5l14 14M19 5L5 19" />
+        </svg>
+      </button>
+    </div>
+    <div class="panel__scroll" style="transition: opacity .25s ease">
+      <h2 class="panel__title">研究室紹介</h2>
+      <div class="panel__content"></div>
+    </div>
+  </aside>
+
+  <!-- ===== section content: built from /content/*.md by scripts/build.mjs ===== -->
+  <div hidden id="md-sources">
+    <script type="text/markdown" data-md="about"></script>
+    <script type="text/markdown" data-md="research"></script>
+    <script type="text/markdown" data-md="results"></script>
+    <script type="text/markdown" data-md="members"></script>
+    <script type="text/markdown" data-md="environment"></script>
+    <script type="text/markdown" data-md="access"></script>
+    <script type="text/markdown" data-md="others"></script>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="assets/network.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+
+</html>
