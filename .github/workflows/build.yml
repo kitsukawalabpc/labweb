@@ -6,6 +6,8 @@ on:
     paths:
       - "content/**.md"
       - "scripts/build.mjs"
+      - "package.json"
+      - "package-lock.json"
       - "index.html"
       - "sitemap.xml"
       - "assets/**"
@@ -29,8 +31,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: npm
 
-      - name: Embed markdown into index.html
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Render markdown into index.html
         run: node scripts/build.mjs
 
       - name: Assemble site

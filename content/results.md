@@ -28,7 +28,7 @@
 ## 学会発表
 
 > `2026`
-> ### [NEURO2026](https://neuro2026.jnss.org/)
+> ### [第49回日本神経科学大会 (NEURO2026)](https://neuro2026.jnss.org/)
 > - **R. Taniguchi**, T. Kitsukawa, "Biologically Plausible Learning in Modern Hopfield Networks"
 > - **K. Kubo**, T. Yoshida, R. Takehara, S. Maruyama, T. Kitsukawa, "Tiled Network of Cortico-Basal Ganglia-like Modules Performs Reinforcement Learning"
 

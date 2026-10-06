@@ -27,25 +27,11 @@
     dockItems.forEach((it) => it.classList.toggle("active", it.dataset.section === id));
   }
 
+  // Section HTML is pre-rendered at build time (scripts/build.mjs:
+  // marked + KaTeX) into <article data-md="…"> inside #md-sources.
   function renderMarkdown(id) {
-    const block = document.querySelector(`script[type="text/markdown"][data-md="${id}"]`);
-    if (!block) return "";
-    const raw = block.textContent.trim();
-    if (window.marked) {
-      // GFM tables, line breaks, raw HTML passthrough (imgph / mapframe)
-      window.marked.setOptions({ gfm: true, breaks: true });
-      // Protect LaTeX ($$…$$ / $…$) from markdown so backslashes and
-      // underscores survive untouched; KaTeX renders the placeholders later.
-      const math = [];
-      const stash = (s) => "\x00MATH" + (math.push(s) - 1) + "\x00";
-      const protectedRaw = raw
-        .replace(/\$\$([\s\S]+?)\$\$/g, (m) => stash(m))
-        .replace(/(?<!\\)\$(?!\s)((?:\\.|[^$\\])+?)(?<!\s)\$/g, (m) => stash(m));
-      let html = window.marked.parse(protectedRaw);
-      html = html.replace(/\x00MATH(\d+)\x00/g, (_, i) => math[+i]);
-      return html;
-    }
-    return raw;
+    const block = document.querySelector(`#md-sources [data-md="${id}"]`);
+    return block ? block.innerHTML.trim() : "";
   }
 
   function fill(id) {
@@ -56,7 +42,7 @@
     elContent.className = "panel__content md";
     elContent.innerHTML = renderMarkdown(id);
     setupImages();
-    renderMath();
+    setupFrames();
     scroll.scrollTop = 0;
   }
 
@@ -82,22 +68,13 @@
     });
   }
 
-  // LaTeX math via KaTeX: $…$ / \(…\) inline, $$…$$ / \[…\] display.
-  function renderMath() {
-    if (!window.renderMathInElement) return;
-    try {
-      window.renderMathInElement(elContent, {
-        delimiters: [
-          { left: "$$", right: "$$", display: true },
-          { left: "\\[", right: "\\]", display: true },
-          { left: "\\(", right: "\\)", display: false },
-          { left: "$", right: "$", display: false },
-        ],
-        throwOnError: false,
-      });
-    } catch (e) {
-      console.warn("KaTeX render failed:", e);
-    }
+  // iframes (e.g. map) are stored as data-src so the hidden source copy
+  // doesn't load them; activate only the copy shown in the panel.
+  function setupFrames() {
+    elContent.querySelectorAll("iframe[data-src]").forEach((f) => {
+      f.src = f.dataset.src;
+      f.removeAttribute("data-src");
+    });
   }
 
   function open(id, nodeId) {
